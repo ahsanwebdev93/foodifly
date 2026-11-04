@@ -10,16 +10,31 @@
 
 <body>
     <nav>
-        <div class="lg">Quick<b>Bite</b></div>
+        <a class="lg" href="admin.html">Quick<b>Bite</b></a>
         <a class="tab" href="index.html">Order food</a>
         <a class="tab on" href="admin.html">Admin</a>
     </nav>
 
     <main class="w">
-        <h1 style="margin-top:0">Admin dashboard</h1>
+        <header class="admin-hero">
+            <div>
+                <span class="eyebrow">YOUR RESTAURANT, AT A GLANCE</span>
+                <h1>Good morning, <em>Admin.</em></h1>
+                <p>Keep an eye on orders and make your menu shine.</p>
+            </div>
+            <a class="btn admin-hero-btn" href="#menu-management">＋ Add a dish</a>
+        </header>
         <div class="stats" id="stats"></div>
-        <h2 class="s">Incoming orders</h2>
-        <div class="card sc">
+        <section class="admin-section" aria-labelledby="orders-title">
+            <div class="admin-section-heading">
+                <div>
+                    <span class="eyebrow">WHAT'S COOKING</span>
+                    <h2 class="s" id="orders-title">Incoming orders</h2>
+                    <p class="mu">Track each order and keep customers in the loop.</p>
+                </div>
+                <span class="admin-live"><span></span> LIVE OVERVIEW</span>
+            </div>
+            <div class="card sc admin-table">
             <table>
                 <thead>
                     <tr>
@@ -32,40 +47,55 @@
                 </thead>
                 <tbody id="ot"></tbody>
             </table>
-        </div>
-        <h2 class="s">Menu items</h2>
-        <div class="card">
-            <div class="f">
-                <div><label class="l" for="fn">Name</label><input id="fn"></div>
-                <div><label class="l" for="fc">Category</label><input id="fc" placeholder="Burgers"></div>
-                <div><label class="l" for="fp">Price ($)</label><input id="fp" type="number" step="0.5"></div>
-                <div><label class="l" for="fe">Emoji</label><input id="fe" value="🍽️"></div>
             </div>
-            <div class="f">
-                <div style="grid-column:1/-1"><label class="l" for="fd">Description</label><input id="fd"></div>
-                <div style="grid-column:1/-1"><label class="l" for="fa">Customisations, as name:price separated by
-                        commas
-                        (e.g. Extra cheese:1.5, Bacon:2)</label><input id="fa"></div>
+        </section>
+        <section class="admin-section" id="menu-management" aria-labelledby="menu-title">
+            <div class="admin-section-heading">
+                <div>
+                    <span class="eyebrow">YOUR KITCHEN CLASSICS</span>
+                    <h2 class="s" id="menu-title">Menu management</h2>
+                    <p class="mu">Add new favourites, update a dish, or tidy up your menu.</p>
+                </div>
             </div>
-            <div class="row" style="justify-content:flex-start">
-                <button class="btn" id="fs">Add item</button>
-                <button class="btn g hide" id="fx">Cancel edit</button>
+            <div class="card admin-form-card">
+                <div class="admin-form-title">
+                    <span class="admin-form-icon">✦</span>
+                    <div><h3>Dish details</h3><p class="mu">Give your next menu favourite a little personality.</p></div>
+                </div>
+                <div class="f">
+                    <div><label class="l" for="fn">Dish name</label><input id="fn" placeholder="e.g. Garden harvest bowl"></div>
+                    <div><label class="l" for="fc">Category</label><input id="fc" placeholder="e.g. Bowls"></div>
+                    <div><label class="l" for="fp">Price (PKR)</label><input id="fp" type="number" min="0" step="1" placeholder="2660"></div>
+                    <div><label class="l" for="fe">Dish emoji</label><input id="fe" value="🍽️"></div>
+                </div>
+                <div class="f">
+                    <div class="admin-wide"><label class="l" for="fd">Description</label><input id="fd" placeholder="A short, delicious description"></div>
+                    <div class="admin-wide"><label class="l" for="fa">Customisations <span class="mu">(name:price, comma-separated)</span></label><input id="fa" placeholder="Extra avocado:1.5, Crispy onions:0.75"></div>
+                </div>
+                <div class="admin-form-actions">
+                    <button class="btn" id="fs">＋ Add dish</button>
+                    <button class="btn g hide" id="fx">Cancel edit</button>
+                </div>
             </div>
-        </div>
-        <div class="card sc" style="margin-top:12px">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>Category</th>
-                        <th>Price</th>
-                        <th>Options</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody id="mt"></tbody>
-            </table>
-        </div>
+            <div class="menu-list-heading">
+                <h3>Your dishes <span class="menu-total" id="menu-total"></span></h3>
+                <label class="search admin-search"><span aria-hidden="true">⌕</span><input id="menu-filter" type="search" placeholder="Search your menu..." aria-label="Search menu items"></label>
+            </div>
+            <div class="card sc admin-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dish</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Customisations</th>
+                            <th><span class="sr-only">Actions</span></th>
+                        </tr>
+                    </thead>
+                    <tbody id="mt"></tbody>
+                </table>
+            </div>
+        </section>
     </main>
 
     <script src="data.js"></script>

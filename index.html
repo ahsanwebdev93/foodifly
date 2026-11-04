@@ -19,14 +19,40 @@
     <main class="w">
         <section id="v-shop">
             <div class="hero">
-                <h1>Hot food, at your door in 30 minutes</h1>
-                <p>Pick a dish, make it yours, and track it live.</p>
+                <div class="hero-copy">
+                    <span class="eyebrow"><span class="live-dot"></span> FRESH FROM OUR KITCHEN</span>
+                    <h1>Good food.<br><em>Good mood.</em></h1>
+                    <p>Your next favourite meal is just a few clicks away. Made fresh, delivered with love.</p>
+                    <a class="hero-cta" href="#menu-title">Explore the menu <span aria-hidden="true">↓</span></a>
+                    <div class="hero-points">
+                        <span><b>✦</b> Freshly made</span>
+                        <span><b>◷</b> At your door in 30 min</span>
+                    </div>
+                </div>
+                <div class="hero-art" aria-hidden="true">
+                    <div class="art-spark spark-one">✳</div>
+                    <div class="food-orbit orbit-one"></div>
+                    <div class="food-orbit orbit-two"></div>
+                    <div class="hero-food">🍔</div>
+                    <div class="float-card float-rating"><span>★★★★★</span><b>Loved by foodies</b></div>
+                    <div class="float-card float-fresh"><span>🥬</span><b>Made fresh daily</b></div>
+                    <div class="art-spark spark-two">✦</div>
+                </div>
             </div>
-            <div class="cats" id="cats"></div>
+            <div class="menu-heading" id="menu-title">
+                <div><span class="eyebrow">A LITTLE SOMETHING FOR EVERYONE</span>
+                    <h2>Explore our menu</h2>
+                </div>
+                <label class="search"><span aria-hidden="true">⌕</span><input id="menu-search" type="search"
+                        placeholder="Find your craving..." aria-label="Search menu"></label>
+            </div>
+            <div class="cats" id="cats" aria-label="Filter menu by category"></div>
+            <p class="menu-count" id="menu-count" aria-live="polite"></p>
             <div class="grid" id="menu"></div>
         </section>
         <section id="v-orders" class="hide">
-            <h2 style="margin-top:0">My orders</h2>
+            <span class="eyebrow">YOUR QUICKBITE HISTORY</span>
+            <h2 class="section-title">My orders</h2>
             <div id="mine"></div>
         </section>
     </main>

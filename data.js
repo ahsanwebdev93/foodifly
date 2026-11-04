@@ -38,12 +38,27 @@ var items = [
     { id: 36, name: "Chicken Caesar wrap", cat: "Sides", price: 8.5, emoji: "🌯", desc: "Grilled chicken, crisp lettuce, parmesan, and Caesar dressing.", addons: [{ n: "Extra chicken", p: 2.5 }, { n: "Avocado", p: 1.5 }] }
 ];
 var orders = [], cart = [], cat = "All", editId = null, mine = [], nid = 37, oid = 1001;
-var schemaVersion = 2;
+var schemaVersion = 3, legacySchemaVersion = 2, usdToPkr = 280, deliveryFee = 700;
+
+function formatPKR(amount) {
+    return "PKR " + new Intl.NumberFormat("en-PK", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    }).format(amount);
+}
+
+function convertItemPricesToPkr(item) {
+    item.price = Math.round(item.price * usdToPkr);
+    item.addons.forEach(function (addon) {
+        addon.p = Math.round(addon.p * usdToPkr);
+    });
+}
 
 try {
     var saved = JSON.parse(localStorage.getItem("qb"));
     if (saved) {
-        if (!saved.schemaVersion || saved.schemaVersion < schemaVersion) {
+        var savedVersion = saved.schemaVersion || 0;
+        if (savedVersion < legacySchemaVersion) {
             var newItems = items.slice(6);
             items = saved.items || items.slice(0, 6);
             var maxItemId = items.reduce(function (max, item) { return Math.max(max, item.id || 0); }, 0);
@@ -52,17 +67,30 @@ try {
                 var migratedItem = Object.assign({}, item, { id: nid++ });
                 items.push(migratedItem);
             });
-            saved.schemaVersion = schemaVersion;
-            saved.items = items;
-            saved.nid = nid;
-            localStorage.setItem("qb", JSON.stringify(saved));
         } else {
             items = saved.items;
             nid = saved.nid || nid;
         }
-        orders = saved.orders;
-        mine = saved.mine;
-        oid = saved.oid;
+        orders = saved.orders || [];
+        mine = saved.mine || [];
+        oid = saved.oid || oid;
+
+        if (savedVersion < schemaVersion) {
+            items.forEach(convertItemPricesToPkr);
+            orders.forEach(function (order) {
+                order.lines.forEach(function (line) {
+                    line.price = Math.round(line.price * usdToPkr);
+                });
+                order.total = Math.round(order.total * usdToPkr);
+            });
+            saved.schemaVersion = schemaVersion;
+            saved.items = items;
+            saved.orders = orders;
+            saved.nid = nid;
+            localStorage.setItem("qb", JSON.stringify(saved));
+        }
+    } else {
+        items.forEach(convertItemPricesToPkr);
     }
 } catch (e) { }
 
