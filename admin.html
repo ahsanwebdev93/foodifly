@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>QuickBite – Admin dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <nav>
+        <div class="lg">Quick<b>Bite</b></div>
+        <a class="tab" href="index.html">Order food</a>
+        <a class="tab on" href="admin.html">Admin</a>
+    </nav>
+
+    <main class="w">
+        <h1 style="margin-top:0">Admin dashboard</h1>
+        <div class="stats" id="stats"></div>
+        <h2 class="s">Incoming orders</h2>
+        <div class="card sc">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order</th>
+                        <th>Customer</th>
+                        <th>Items</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="ot"></tbody>
+            </table>
+        </div>
+        <h2 class="s">Menu items</h2>
+        <div class="card">
+            <div class="f">
+                <div><label class="l" for="fn">Name</label><input id="fn"></div>
+                <div><label class="l" for="fc">Category</label><input id="fc" placeholder="Burgers"></div>
+                <div><label class="l" for="fp">Price ($)</label><input id="fp" type="number" step="0.5"></div>
+                <div><label class="l" for="fe">Emoji</label><input id="fe" value="🍽️"></div>
+            </div>
+            <div class="f">
+                <div style="grid-column:1/-1"><label class="l" for="fd">Description</label><input id="fd"></div>
+                <div style="grid-column:1/-1"><label class="l" for="fa">Customisations, as name:price separated by
+                        commas
+                        (e.g. Extra cheese:1.5, Bacon:2)</label><input id="fa"></div>
+            </div>
+            <div class="row" style="justify-content:flex-start">
+                <button class="btn" id="fs">Add item</button>
+                <button class="btn g hide" id="fx">Cancel edit</button>
+            </div>
+        </div>
+        <div class="card sc" style="margin-top:12px">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Options</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="mt"></tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="data.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>

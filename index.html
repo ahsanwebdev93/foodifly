@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>QuickBite – Food delivery</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <nav>
+        <div class="lg">Quick<b>Bite</b></div>
+        <button class="tab on" data-v="shop">Order food</button><button class="tab" data-v="orders">My
+            orders</button>
+        <button class="btn" id="cb">Cart (<span id="cc">0</span>)</button>
+    </nav>
+
+    <main class="w">
+        <section id="v-shop">
+            <div class="hero">
+                <h1>Hot food, at your door in 30 minutes</h1>
+                <p>Pick a dish, make it yours, and track it live.</p>
+            </div>
+            <div class="cats" id="cats"></div>
+            <div class="grid" id="menu"></div>
+        </section>
+        <section id="v-orders" class="hide">
+            <h2 style="margin-top:0">My orders</h2>
+            <div id="mine"></div>
+        </section>
+    </main>
+
+    <div class="ov" id="ov">
+        <div class="md" id="md"></div>
+    </div>
+    <aside class="cart" id="cart">
+        <div class="row">
+            <h2 style="margin:0">Your cart</h2><button class="btn g" id="cx">Close</button>
+        </div>
+        <div id="cl"></div>
+        <div id="ck" class="hide">
+            <div class="row pr"><span>Total</span><span id="ct"></span></div>
+            <label class="l" style="margin-top:10px">Your name</label><input id="nm" value="Guest">
+            <label class="l" style="margin-top:8px">Delivery address</label><input id="ad" placeholder="Street, city">
+            <button class="btn" style="width:100%;margin-top:12px" id="po">Place order</button>
+        </div>
+    </aside>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
